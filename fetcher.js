@@ -3,11 +3,9 @@ const argv = process.argv.slice(2);
 const request = require('request');
 const fs = require('fs');
 
-
 const fetch = (urlAddress, localPath) => {
   request(`${urlAddress}${localPath}`, (error, response, body) => {
-    // console.log(`Body Has Been Fetched from ${urlAddress}${localPath}`)
-    fs.writeFile(`./pages/${localPath}`, body,{flag: 'w+'}, err => {
+    fs.writeFile(`./pages/${localPath}`, body,{flag: 'w+'}, err => { //Pages are saved to a subfolder for organization
       if (err) {
         console.log(err);
       }
@@ -19,11 +17,10 @@ const fetch = (urlAddress, localPath) => {
         }
       });
     });
-
-
   });
 };
 
+fetch(argv[0],argv[1]);
 
 //////////////////////////////////////////////////////////////
 // This was for practicing if I could make unique fileNames //
@@ -53,4 +50,3 @@ const fetch = (urlAddress, localPath) => {
 //   return simpleAddress
 // }
 
-fetch(argv[0],argv[1]);
